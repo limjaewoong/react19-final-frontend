@@ -8,7 +8,7 @@ import {redirect} from "react-router";
  * 사용자의 인증 상태(user 정보)를 Zustand 스토어에 로드하는 것입니다.
  */
 export const rootLoader = async () => {
-    const userInStore = authStore.getState().user;
+    const userInStore = authStore((state) => state.user);
     const accessToken = sessionStorage.getItem("access_token");
 
     // 시나리오 1: 사용자 정보가 이미 스토어에 있는 경우.
