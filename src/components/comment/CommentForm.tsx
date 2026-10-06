@@ -8,8 +8,8 @@ import {twMerge} from "tailwind-merge";
 export default function CommentForm({id, setComments, setOptimisticComments}:
                                     {
                                         id: string,
+                                        setComments: Dispatch<SetStateAction<comment[]>>,
                                         setOptimisticComments: (action: comment) => void;
-                                        setComments: Dispatch<SetStateAction<comment[]>>;
                                     }) {
     const user = authStore.getState().user;
     const [text, setText] = useState('');
@@ -22,7 +22,7 @@ export default function CommentForm({id, setComments, setOptimisticComments}:
             return;
         }
 
-        startTransition(async ()=>{
+        startTransition(async () => {
             setOptimisticComments({
                 author: {
                     id: Date.now().toString(),
@@ -62,15 +62,15 @@ export default function CommentForm({id, setComments, setOptimisticComments}:
                     />
                 }
                 <div className="flex-1">
-          <textarea
-              name="text"
-              value={text}
-              onChange={(e) => setText(e.target.value)}
-              onFocus={checkUser}
-              placeholder={"Write a comment..."}
-              className="w-full bg-slate-800 text-white rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-blue-500 focus:outline-none resize-none"
-              rows={3}
-          />
+                    <textarea
+                        name="text"
+                        value={text}
+                        onChange={(e) => setText(e.target.value)}
+                        onFocus={checkUser}
+                        placeholder={"Write a comment..."}
+                        className="w-full bg-slate-800 text-white rounded-lg px-4 py-2.5 focus:ring-2 focus:ring-blue-500 focus:outline-none resize-none"
+                        rows={3}
+                    />
                     <div className="flex justify-end mt-2">
                         <button
                             type="submit"
